@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+:root {
+  --color-dark: #2C3E50;
+  --color-light: #ECF0F1;
+  --color-primary-text: #2C3E50;
+  --color-secondary-text: #ECF0F1;
+
+  /* Font sizes */
+  --font-size-base: 1rem;
+  --font-size-h1: calc(2.5 * var(--font-size-base));
+  --font-size-h2: calc(2.25 * var(--font-size-base));
+  --font-size-h3: calc(2 * var(--font-size-base));
+  --font-size-h4: calc(1.75 * var(--font-size-base));
+  --font-size-h5: calc(1.5 * var(--font-size-base));
+  --font-size-h6: calc(1.25 * var(--font-size-base));
+  --font-size-p: var(--font-size-base);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif;
+  color: var(--color-secondary-text);
+}
+
+p,
+label {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--color-primary-text);
+}
+
+span,
+a {
+  font-family: 'Roboto', sans-serif;
+  color: var(--color-secondary-text);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+h5 {
+  font-size: var(--font-size-h5);
+}
+
+h6 {
+  font-size: var(--font-size-h6);
+}
+
+p {
+  font-size: var(--font-size-p);
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    "nav"
+    "header"
+    "main"
+    "footer"
+  ;
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 100vh;
+}
+
+header {
+  grid-area: header;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+nav {
+  grid-area: nav;
+  background-color: var(--color-dark);
+
+  padding: 0 2rem;
+}
+
+main {
+  grid-area: main;
+  background-color: var(--color-light);
+  color: var(--color-primary-text);
+}
+
+footer {
+  grid-area: footer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
+
+  text-align: center;
+  color: var(--color-secondary-text);
+}
+
+header {
+  text-align: center;
+}
+
+
+/* RESPONSIVE NAVBAR */
+/* NavBar */
+nav li a {
+  text-decoration: none;
+
+  color: var(--color-light);
+}
+
+nav li a:hover,
+nav .menu-btn:hover {
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+/* menu */
+nav .menu {
+  max-height: 0;
+  transition: max-height .2s ease-out;
+}
+
+/* menu icon */
+
+nav .menu-icon {
+  cursor: pointer;
+  display: inline-block;
+
+  padding: 28px 20px;
+  user-select: none;
+}
+
+nav .menu-icon .navicon {
+  background-color: var(--color-light);
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+}
+
+nav .menu-icon .navicon:before,
+nav .menu-icon .navicon:after {
+  background-color: var(--color-light);
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+nav .menu-icon .navicon:before {
+  top: 5px;
+}
+
+nav .menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+nav .menu-btn {
+  display: none;
+}
+
+nav .menu-btn:checked~.menu {
+  max-height: 100%;
+}
+
+nav .menu-btn:checked~.menu-icon .navicon {
+  background: transparent;
+}
+
+nav .menu-btn:checked~.menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+nav .menu-btn:checked~.menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+nav .menu-btn:checked~.menu-icon:not(.steps) .navicon:before,
+nav .menu-btn:checked~.menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+/* Media Queries */
+
+@media (min-width: 992px) {
+  body {
+    grid-template-areas:
+      "nav header"
+      "nav main"
+      "footer footer"
+    ;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  nav {
+    padding: 2rem;
+  }
+
+  nav .menu {
+    max-height: 100%;
+    transition: max-height .2s ease-out;
+  }
+
+  nav .menu-icon {
+    display: none;
+  }
+}
